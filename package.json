@@ -1,0 +1,24 @@
+{
+  "name": "aaql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^24.9.1",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@asyncapi/converter": "^1.6.2",
+    "dotenv": "^17.2.3",
+    "mongodb": "^6.20.0",
+    "yaml": "^2.8.1"
+  }
+}

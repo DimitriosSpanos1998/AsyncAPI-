@@ -1,0 +1,58 @@
+asyncapi: '2.6.0'
+info:
+  title: Smart Home Events
+  version: '1.0.0'
+  description: Demo AsyncAPI για δοκιμή του converter.
+defaultContentType: application/json
+
+servers:
+  mqttProd:
+    url: mqtt://broker.hivemq.com
+    protocol: mqtt
+    protocolVersion: '5.0'
+    description: Public MQTT broker
+  wsLocal:
+    url: ws://localhost:8080
+    protocol: ws
+    description: Local WebSocket gateway
+
+channels:
+  device/{id}/temperature:
+    description: Device temperature updates
+    parameters:
+      id:
+        schema:
+          type: string
+          description: Device id
+    publish:
+      operationId: publishDeviceTemperature
+      summary: Device sends temperature
+      message:
+        name: TemperatureMessage
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            celsius:
+              type: number
+            timestamp:
+              type: string
+              format: date-time
+  alerts/overheat:
+    description: Overheat alerts
+    subscribe:
+      operationId: subscribeOverheatAlerts
+      summary: Backend consumes overheat alerts
+      message:
+        name: OverheatAlert
+        contentType: application/json
+        payload:
+          type: object
+          properties:
+            deviceId:
+              type: string
+            celsius:
+              type: number
+            severity:
+              type: string
+              enum: [low, medium, high]
